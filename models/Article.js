@@ -1,32 +1,54 @@
-var mongoose = require("mongoose");
+const   mongoose            = require("mongoose"),
+        uniqueValidator     = require("mongoose-unique-validator");
 
-// Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+// Create schema for db
+const Schema = mongoose.Schema;
 
-// Using the Schema constructor, create a new UserSchema object
-// This is similar to a Sequelize model
-var ArticleSchema = new Schema({
-  // `title` is required and of type String
-  title: {
-    type: String,
-    required: true
-  },
-  // `link` is required and of type String
-  link: {
-    type: String,
-    required: true
-  },
-  // `note` is an object that stores a Note id
-  // The ref property links the ObjectId to the Note model
-  // This allows us to populate the Article with an associated Note
-  note: {
-    type: Schema.Types.ObjectId,
-    ref: "Note"
-  }
+// Create article scehma
+const ArticleSchema = new Schema ({
+    
+    // title for article
+    title: {
+        type: String,
+        required: true
+    },
+    //l ink to article
+    link: {
+        type:String,
+        unique: true,
+        required: true
+    },
+    // save article or not
+    saved: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    //d elete article or not
+    deleted: {
+        type: Boolean,
+        required: true,
+        default: false
+      },
+    // date is set when added to database
+    date: {
+        type: Date,
+        default: Date.now
+      },
+    // notes is an array of reference ids
+    notes: [{
+        type: Schema.Types.ObjectId,
+        ref: "Note",
+        required: false
+        }]
+
 });
 
-// This creates our model from the above schema, using mongoose's model method
-var Article = mongoose.model("Article", ArticleSchema);
+// plugin to make articles unique
+ArticleSchema.plugin(uniqueValidator);
 
-// Export the Article model
+// create article model
+const Article = mongoose.model("Article" , ArticleSchema);
+
+// export Article for other uses
 module.exports = Article;
