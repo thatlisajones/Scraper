@@ -23,7 +23,7 @@ router.get('/', function(req, res) {
                 console.log(articles);
                 let hbsObj = {
                     title: 'RealClear Scraper',
-                    subtitle: 'political headlines',
+                    subtitle: 'headlines from realclearpolitics.com',
                     articles: articles
                 };
                 res.render('index', hbsObj);
@@ -47,7 +47,7 @@ router.get('/saved', function(req, res) {
                 console.log(articles);
                 let hbsObj = {
                     title: 'RealClear Scraper',
-                    subtitle: 'political headlines',
+                    subtitle: 'headlines from realclearpolitics.com',
                     articles: articles
                 };
                 res.render("saved" ,hbsObj);
