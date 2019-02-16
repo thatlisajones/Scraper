@@ -103,7 +103,7 @@ router.delete('/:id', function(req, res) {
 // div.post
 // 
 // scrape articles
-router.get('/scrape', function(req, res) {
+router.get('/scrape', function(req, res, next) {
     request('https://www.realclearpolitics.com/', function(error, response, html) {
         let $ = cheerio.load(html);
         let results = [];
@@ -111,7 +111,7 @@ router.get('/scrape', function(req, res) {
             let title = $(this).children('a').text(),
                 link = $(this).children('a').attr('href'),
                 single = {};
-            if (link !== undefined && link.includes('http') &&  title !== '') {                
+            if (link !== undefined && link.includes('http') &&  title !== '') {
                 single = {
                     title: title,
                     link: link
@@ -121,20 +121,19 @@ router.get('/scrape', function(req, res) {
                 // save to database
                 entry.save(function(err, doc) {
                     if (err) {
+                        if (!err.errors.link) {
                             console.log(err);
+                        }
                     } else {
                         console.log('new article added');
                         
                     }
                 });
             }
-        })
-        // next();
-
+        });
+        next();
     });
-},function(req, res) {
-    console.log("func redirect");
-    
+}, function(req, res) {
     res.redirect('/');
 });
 
