@@ -1,30 +1,20 @@
 {
-  "name": "scraper",
+  "name": "mongoose_skeleton",
   "version": "1.0.0",
-  "description": "mongoose news scraper",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thatlisajones/Scraper.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/thatlisajones/Scraper/issues"
-  },
-  "homepage": "https://github.com/thatlisajones/Scraper#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
-    "express": "^4.16.4",
-    "express-handlebars": "^3.0.0",
-    "method-override": "^3.0.0",
-    "mongoose": "^5.4.10",
-    "mongoose-unique-validator": "^2.0.2",
-    "morgan": "^1.9.1",
-    "request": "^2.88.0"
+    "express": "^4.16.3",
+    "mongoose": "^5.3.16",
+    "morgan": "^1.9.1"
   }
 }

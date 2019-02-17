@@ -1,28 +1,19 @@
-const mongoose = require('mongoose'),
-      uniqueValidator = require('mongoose-unique-validator');
+var mongoose = require("mongoose");
 
-// create Schema class
-const Schema = mongoose.Schema;
+// Save a reference to the Schema constructor
+var Schema = mongoose.Schema;
 
-// create note schema
-const NoteSchema = new Schema({
-  // title is a required string
-  text: {
-    type: String,
-    required: true
-  },
-  // date is set when added to database
-  date: {
-    type: Date,
-    default: Date.now
-  }
+// Using the Schema constructor, create a new NoteSchema object
+// This is similar to a Sequelize model
+var NoteSchema = new Schema({
+  // `title` is of type String
+  title: String,
+  // `body` is of type String
+  body: String
 });
 
-// add unique-validator plugin
-NoteSchema.plugin(uniqueValidator);
+// This creates our model from the above schema, using mongoose's model method
+var Note = mongoose.model("Note", NoteSchema);
 
-// create the Note model with the NoteSchema
-const Note = mongoose.model("Note", NoteSchema);
-
-// export the model
+// Export the Note model
 module.exports = Note;
