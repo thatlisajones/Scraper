@@ -1,0 +1,27 @@
+<div>
+<div class="modal" id="noteModal{{_id}}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">notes for: {{title}}</h5>
+      </div>
+      <div class="modal-body">
+      {{#if note}}
+        <div class="card">
+          {{note.body}}
+        </div>
+      {{/if}}
+        <form>
+            <div class="form-group">
+                <label for="noteArea">add note</label>
+                <textarea class="form-control" id="noteArea{{_id}}"></textarea>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info saveNote" data-id={{_id}} data-dismiss="modal">save note</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
